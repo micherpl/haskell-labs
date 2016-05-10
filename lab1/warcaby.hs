@@ -16,7 +16,7 @@ initialBoardStr = unlines [" b b b b"
                           ,"w w w w "
                           ," w w w w"
                           ,"w w w w "
-						]
+			]
 
 showBoard :: Board -> String
 showBoard = unlines . map showRow
