@@ -4,6 +4,7 @@ import System.IO
 
 
 type Board = [[Square]]
+type Square = Maybe Piece
 data Piece = Piece PColor PType 
 data PColor = White | Black 
 data PType = Pawn | Queen 
@@ -42,3 +43,8 @@ readPiece 'w' = (Piece White Pawn)
 readPiece 'W' = (Piece White Queen)
 readPiece 'b' = (Piece Black Pawn)
 readPiece 'B' = (Piece Black Queen)
+
+
+let genMoves (a,b) = concat [[(a+f,b+f),(a-f,b-f)] | f <- [1..7]]
+let genMoves c (a,b) = filter (\(x,y)-> and [x>=1, x<=8, y>=1, y<=8]) $ [1..2] >>= (\f -> m)
+--genPos rows = [(c, d) | c <- [1..8], d <- rows, or [and [even c, even d], and [odd c, odd d]] ]
