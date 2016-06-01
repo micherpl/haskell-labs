@@ -222,3 +222,8 @@ nextStates (f, b) = [(oppositeColor f, b')|pos<-colorPos f b, b'<-genMoves b pos
 let genMoves (a,b) = concat [[(a+f,b+f),(a-f,b-f)] | f <- [1..7]]
 let genMoves c (a,b) = filter (\(x,y)-> and [x>=1, x<=8, y>=1, y<=8]) $ [1..2] >>= (\f -> m)
 --genPos rows = [(c, d) | c <- [1..8], d <- rows, or [and [even c, even d], and [odd c, odd d]] ]
+genMoves :: (Enum t, Num t) => (t, t) -> Piece -> [(t, t)]
+genMoves (a,b) (Piece pcolor ptype) =
+ case pcolor of
+     White -> concat [[(a+f,b+f),(a-f,b-f)] | f <- [1..7]]
+     Black -> concat [[(a+f,b+f),(a-f,b-f)] | f <- [1..7]]
